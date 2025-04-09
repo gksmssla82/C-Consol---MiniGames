@@ -7,7 +7,7 @@ public:
 
 public:
 	void Initialize(bool _bhwnd = true);
-	void Progress();
+	void Update();
 	void Render();
 	void Release();
 

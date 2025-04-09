@@ -44,7 +44,7 @@ void CScreen::Initialize(bool _bhwnd)
 	}
 }
 
-void CScreen::Progress()
+void CScreen::Update()
 {
 }
 

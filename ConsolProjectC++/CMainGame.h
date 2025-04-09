@@ -1,5 +1,8 @@
 #pragma once
 
+class CMenu;
+class CScreen;
+
 class CMainGame
 {
 public:
@@ -7,12 +10,12 @@ public:
 	~CMainGame();
 
 public:
-	void Initialize(bool _bhwnd = true);
-	void Progress();
-	void Render();
+	void Initialize();
+	void Update();
 	void Release();
 
 private:
-	void MainMenuArt();
+	CMenu* m_pMenu;
+	CScreen* m_pScreen;
 };
 

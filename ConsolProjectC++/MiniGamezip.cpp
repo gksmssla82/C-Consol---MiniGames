@@ -1,21 +1,22 @@
 #include "pch.h"
+#include "CMenu.h"
 #include "CMainGame.h"
-#include "CScreen.h"
 
-int main()
+
+void main()
 {
 	CMainGame MainGame;
-	//CScreen Screen;
 
-	//Screen.Initialize();
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(hConsole, &cursorInfo);
+	cursorInfo.bVisible = FALSE;
+	SetConsoleCursorInfo(hConsole, &cursorInfo);
+
 	MainGame.Initialize();
 
-	while (true)
-	{
-		MainGame.Progress();
+	MainGame.Update();
 
-		
-	}
-
-	return 0;
+	
 }
+

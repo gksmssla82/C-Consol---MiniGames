@@ -1,0 +1,4 @@
+OpenCV를 설치하고 다운 받아서
+경로 및 링커 연결해줘야함
+https://m.blog.naver.com/dorergiverny/223057719024
+참고

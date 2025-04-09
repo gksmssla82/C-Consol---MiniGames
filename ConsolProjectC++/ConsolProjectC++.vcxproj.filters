@@ -13,19 +13,52 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\00.MainGame">
-      <UniqueIdentifier>{6461c4a9-80b4-4065-9015-3837a94117b6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\99.Pch">
       <UniqueIdentifier>{2285d66f-443d-4e51-9122-eca54d3880ea}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\01.Screen">
       <UniqueIdentifier>{5e61e323-1986-40df-879e-12e6c2cf2ff1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Sceen">
+      <UniqueIdentifier>{24c49bcf-9a80-4df2-b263-28fa28b445dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\01.Tetris">
+      <UniqueIdentifier>{26f2acab-18f4-4b1e-8273-f19e6ae5e5ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\02.BrickOut">
+      <UniqueIdentifier>{3f756b6c-4783-4e25-b18e-4284d0858aa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00.MainGame">
+      <UniqueIdentifier>{6680987e-ebb3-49fe-b176-0fabd2557705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\00.Menu">
+      <UniqueIdentifier>{6461c4a9-80b4-4065-9015-3837a94117b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\03.Escape">
+      <UniqueIdentifier>{6f2a5e61-f766-4278-8c3e-9a66fdc044d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\03.Escape\00.Stage">
+      <UniqueIdentifier>{eaa9d4f0-3746-4441-8136-b72ea78f92c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\03.Escape\00.Stage\Stage1">
+      <UniqueIdentifier>{fede783b-4bb3-447e-bd3c-a35c108924d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\03.Escape\01.CutScene">
+      <UniqueIdentifier>{d876787d-12c0-4331-acf4-78115e5dab63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\03.Escape\01.CutScene\CutScene1">
+      <UniqueIdentifier>{e5e5d579-1d7a-4fb5-8348-00979b807eba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\03.Escape\00.Stage\Stage2">
+      <UniqueIdentifier>{01996b2d-bd1e-491a-b42b-7a187d66b75c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Sceen\03.Escape\01.CutScene\CutScene2">
+      <UniqueIdentifier>{d17b3f6e-4f14-4a34-b99c-d39c272b187e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CMainGame.h">
-      <Filter>소스 파일\00.MainGame</Filter>
+    <ClInclude Include="CMenu.h">
+      <Filter>소스 파일\02.Sceen\00.Menu</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
@@ -48,10 +81,40 @@
     <ClInclude Include="global.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CMainGame.h">
+      <Filter>소스 파일\00.MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CTetris.h">
+      <Filter>소스 파일\02.Sceen\01.Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="CBrickOut.h">
+      <Filter>소스 파일\02.Sceen\02.BrickOut</Filter>
+    </ClInclude>
+    <ClInclude Include="CEscape.h">
+      <Filter>소스 파일\02.Sceen\03.Escape</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage.h">
+      <Filter>소스 파일\02.Sceen\03.Escape\00.Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage1.h">
+      <Filter>소스 파일\02.Sceen\03.Escape\00.Stage\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="CCutScene.h">
+      <Filter>소스 파일\02.Sceen\03.Escape\01.CutScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CCutScene1.h">
+      <Filter>소스 파일\02.Sceen\03.Escape\01.CutScene\CutScene1</Filter>
+    </ClInclude>
+    <ClInclude Include="CStage2.h">
+      <Filter>소스 파일\02.Sceen\03.Escape\00.Stage\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="CCutScene2.h">
+      <Filter>소스 파일\02.Sceen\03.Escape\01.CutScene\CutScene2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CMainGame.cpp">
-      <Filter>소스 파일\00.MainGame</Filter>
+    <ClCompile Include="CMenu.cpp">
+      <Filter>소스 파일\02.Sceen\00.Menu</Filter>
     </ClCompile>
     <ClCompile Include="MiniGamezip.cpp">
       <Filter>소스 파일</Filter>
@@ -61,6 +124,36 @@
     </ClCompile>
     <ClCompile Include="CScreen.cpp">
       <Filter>소스 파일\01.Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="CMainGame.cpp">
+      <Filter>소스 파일\00.MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="CTetris.cpp">
+      <Filter>소스 파일\02.Sceen\01.Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="CBrickOut.cpp">
+      <Filter>소스 파일\02.Sceen\02.BrickOut</Filter>
+    </ClCompile>
+    <ClCompile Include="CEscape.cpp">
+      <Filter>소스 파일\02.Sceen\03.Escape</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage.cpp">
+      <Filter>소스 파일\02.Sceen\03.Escape\00.Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage1.cpp">
+      <Filter>소스 파일\02.Sceen\03.Escape\00.Stage\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="CCutScene.cpp">
+      <Filter>소스 파일\02.Sceen\03.Escape\01.CutScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CCutScene1.cpp">
+      <Filter>소스 파일\02.Sceen\03.Escape\01.CutScene\CutScene1</Filter>
+    </ClCompile>
+    <ClCompile Include="CStage2.cpp">
+      <Filter>소스 파일\02.Sceen\03.Escape\00.Stage\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="CCutScene2.cpp">
+      <Filter>소스 파일\02.Sceen\03.Escape\01.CutScene\CutScene2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

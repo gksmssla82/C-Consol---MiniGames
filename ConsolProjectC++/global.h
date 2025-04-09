@@ -1,5 +1,10 @@
 #pragma once
 
+const string ASCII_PALETTE = " .,:;+*?%S#@";
+
+static atomic<bool> running(true);
+
+static mutex gMutex;
 
 static void Set_CursorPos(int x, int y)
 {
@@ -25,8 +30,9 @@ static void Stream_Open(const char* _path)
 	file.close();
 }
 
-static bool Ascii_Transform(const string& _imagePath, const string& _outputTxtPath = "ascii_art.txt", int _width = 100) {
-    string ASCII_PALETTE = " .,:;+*?%S#@";
+static bool Ascii_Image(const string& _imagePath,  int _width = 100) 
+{
+    
     //string ASCII_PALETTE = " .'`^\",:;Il!i~+_-?][}{1)(|\\/<X7zjftLr-+=o*#MW&8%B@$";
     //string ASCII_PALETTE = "@%#&*+=-:. ";
    
@@ -54,54 +60,61 @@ static bool Ascii_Transform(const string& _imagePath, const string& _outputTxtPa
         asciiArt += "\n";
     }
 
+   
     // 3. 콘솔 출력
     std::cout << asciiArt << endl;
 
-    // 4. 파일 저장
-    std::ofstream outFile(_outputTxtPath);
+    
 
-    if (!outFile.is_open()) {
-        std::cerr << "Error: Cannot save file to " << _outputTxtPath << std::endl;
-        return false;
-    }
-    outFile << asciiArt;
-    outFile.close();
-
-    std::cout << "ASCII art saved to: " << _outputTxtPath << std::endl;
     return true;
 }
 
-//void convertToAsciiWithAlpha(const cv::Mat& img, std::string& asciiArt, int width = 100) {
-//    // 알파 채널 확인 (4채널 이미지인 경우)
-//    if (img.channels() != 4) {
-//        std::cerr << "Error: No alpha channel!" << std::endl;
-//        return;
-//    }
-//
-//    // 리사이즈 및 그레이스케일 변환
-//    int height = static_cast<int>((double)img.rows / img.cols * width * 0.4);
-//    cv::Mat resized, gray;
-//    cv::resize(img, resized, cv::Size(width, height));
-//    cv::cvtColor(resized, gray, cv::COLOR_BGRA2GRAY);  // 알파 채널 고려
-//
-//    asciiArt.clear();
-//    for (int y = 0; y < resized.rows; y++) {
-//        for (int x = 0; x < resized.cols; x++) {
-//            // 픽셀의 알파 값 확인 (투명도 체크)
-//            uchar alpha = resized.at<cv::Vec4b>(y, x)[3];
-//            if (alpha < 128) {  // 투명한 픽셀은 공백 처리
-//                asciiArt += " ";
-//                continue;
-//            }
-//
-//            // 불투명 픽셀만 ASCII 변환
-//            uchar pixel = gray.at<uchar>(y, x);
-//            int index = (pixel * (ASCII_PALETTE.size() - 1)) / 255;
-//            asciiArt += ASCII_PALETTE[index];
-//        }
-//        asciiArt += "\n";
-//    }
-//}
+static void Ascii_Movie(const string& _gifPath, int _width, short _x, short _y)
+{
+    cv::VideoCapture cap(_gifPath);
+    if (!cap.isOpened()) {
+        cerr << "GIF 로드 실패: " << _gifPath << endl;
+        return;
+    }
+    
+    while (running) {
+        cv::Mat frame;
+        cap >> frame;
+        if (frame.empty()) {
+            cap.set(cv::CAP_PROP_POS_FRAMES, 0);
+            continue;
+        }
+
+        // ASCII 변환
+        cv::Mat gray;
+        cv::resize(frame, frame, cv::Size(_width, (int)(frame.rows * _width / frame.cols * 0.4)));
+        cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
+
+        string asciiFrame;
+        for (int y = 0; y < gray.rows; y++) {
+            for (int x = 0; x < gray.cols; x++) {
+                int index = gray.at<uchar>(y, x) * 9 / 255;
+                asciiFrame += "@%#*+=-:. "[index];
+            }
+            asciiFrame += "\n";
+        }
+        gMutex.lock();
+        // 콘솔 커서를 GIF 출력 부분으로 이동
+        Set_CursorPos(_x, _y);
+        cout << asciiFrame << flush;
+        gMutex.unlock();
+
+        if (cv::waitKey(30) == 27) {
+            running = false;
+            break;
+        }
+    }
+}
+
+
+
+
+
 
 
 
